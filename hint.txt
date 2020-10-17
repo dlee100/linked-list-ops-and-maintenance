@@ -1,0 +1,21 @@
+Assignment #4 Hints
+
+I responded to a student question about how to loop through a linked list, visiting the nodes in linked order.  My response is below and I decided to share it with the class for those of you who are still working on A4.  It's important that you understand the idea that you use the links (or pointers, which are object references) to move through the list.,  The binary search tree and graph code that we'll be studying depends on you knowing it.  
+
+----start reply----
+
+Unfortunately you can't simply 'for' loop through a linked list.  Instead you must manually move through the list, which is the point of the assignment.  To illustrate, below is the code for the 'search' method of the SLL:
+1 def search(self, key):
+2     """ Search the list using looking for an element = key. """        
+3     cursor = self._head                # 'cursor' is the node pointer, starting at the list head
+4     while cursor:                          # loop until cursor is 'None', the list tail was reached
+5          if key == cursor.getElement():  # is the node element equal to the 'key' search target? 
+6                  return True
+7            cursor = cursor.getNext()   # point to the next node by setting cursor to next 
+8     return False
+
+The above searches the SLL one node at a time, starting with the head, until it finds a node whose element (data or key) equals the parameter 'key' value or it reaches the node after the tail, which is 'None'.  Lines 3, 4, and 7 are the way you loop through the list.  I've added some comments to help you understand what's going on, but the code itself was provided with the assignment as a Jupyter notebook file.  Copy it in and start from there if you haven't already done it.  
+   
+Remember that a pointer ('cursor' in the above code) is the object reference - the long number representing the place in storage where the object's data is kept.  Each node is located at a difference place and is usually not in consecutive locations.  How to follow and manipulate these pointers is the thing I'm trying to get across here.
+   
+For 'insertAfter' you have to keep a counter variable to count how many nodes you've passed before inserting after the ith one.  For 'insertElt' you have to save the previous and next node pointers as you loop through the list so you can place your new node after the previous or before the next one.   
