@@ -100,7 +100,7 @@ class SinglyLinkedList:
             cursor = self._head #'cursor' is the node pointer, starting at the list head.
             count = 0
             # if the specified index is greater than the size of the list, add the node to the end of the list.
-            if int(i) >= self._size:
+            if int(i) >= self._size: # same function as add()
                 while cursor.getNext() is not None:
                     count+=1
                     cursor = cursor.getNext()
@@ -117,7 +117,7 @@ class SinglyLinkedList:
             #count+=1
         print('Inserted ', node.getElement(), 'after index position #', count)
     
-    # you have to save the previous and next node pointers as you loop through the list so you can place your new node after the previous or before the next one.
+    # You have to save the previous and next node pointers as you loop through the list so you can place your new node after the previous or before the next one.
     def insertElt (self, insrtThis, where, insrtHere):
         """Insert element 'insrtThis' before/after node with element =='insrtHere'.
            Parameter 'where' = "B" (before) or "A' (After) 'insrtHere'.        """
@@ -125,6 +125,40 @@ class SinglyLinkedList:
         # insert method body below
         # Hint: search for the list node element == 'insrtHere', then insert accordingly...'  
         
+        if self.isEmpty():
+            self._head = node
+        else:
+            cursor = self._head
+            #insrtHere = cursor.getElement()
+            if where == 'A':
+                # add insrtThis AFTER insrtHere
+                while cursor.getNext() is not None:
+                    if insrtHere == cursor.getElement():
+                        insrtHere = cursor.getElement()
+                        pass
+                    cursor = cursor.getNext()
+                    print('iterating ... ')
+                cursor.setNext(node)
+                self._size += 1
+                print('Inserted ', node.getElement(), 'after ', insrtHere)
+            elif where == 'B':
+                # add insrtThis BEFORE insrtHere
+                
+                while cursor.getNext() is not None:
+                    if insrtHere == cursor.getElement():
+                        insrtHere = cursor.getElement()
+                        pass
+                    cursor = cursor.getNext()
+                    print('iterating ... ')
+                cursor.
+                self._size += 1
+                print('Inserted ', node.getElement(), 'before ', insrtHere)
+            else:
+                pass
+        
+    
+    
+    
     
     
         

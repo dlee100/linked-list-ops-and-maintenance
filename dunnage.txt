@@ -50,6 +50,14 @@
         'R',
         'R',
 
+        #SLL = SinglyLinkedList()
+        #SLL.add('Washington')
+        #SLL.add('Adams')
+        #SLL.add('Jefferson')
+        #SLL.add('Madison')
+
+        #SLL.showList()
+
 
         while cursor: #loop until cursor is 'None', the list tail was reached.
                     if count == i:
@@ -58,3 +66,13 @@
                     #cursor = cursor.setNext(node) #point to the next node by setting cursor to next.
                     count+=1
                 self._size += 1
+
+
+        if insrtHere not in node: # same function as add()
+                while cursor.getNext() is not None:
+                    #count+=1
+                    cursor = cursor.getNext()
+                cursor.setNext(node)
+                print('Adding # ', self._size, ' element: ', node.getElement())
+                self._size += 1
+            el
