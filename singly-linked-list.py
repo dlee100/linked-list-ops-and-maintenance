@@ -44,7 +44,7 @@ class SinglyLinkedList:
         else:
             cursor = self._head
             while cursor.getNext() is not None:
-                cursor = cursor.getNext( )
+                cursor = cursor.getNext()
             cursor.setNext(node)
         print('Adding # ', self._size, ' element: ', node.getElement())
         self._size += 1
@@ -88,35 +88,47 @@ class SinglyLinkedList:
 # ^^^^^ SHOULD ONLY BE AROUND 30 LINES OF CODE FOR THESE TWO METHODS COMBINED
 # ^^^^^ Review how LINKED STRUCTURES work and OBJECT ID's for pointing elements
 # ^^^^^ Textbook pages 255-265 (chapter 7)
-    def insertAfter (self, i, element): 
-        # 'i' is the 'ith' element (int input), 'element' is the element itself to be inserted (str input)
-        """Insert an element after the ith element of the list."""
-        node = self._Node(element, None)
-      # insert method body below
-      # Cases: (1) insert into empty list, (2) insert before the head, (3) insert in the interior
-        i = input(int)
-        # Case 1: insert into empty list
-        if self.isEmpty():
-            self._head = node # element?
-            # adds element to the empty list, making the element the head of the list. ***Case 1***
-        else:
-            cursor = self._i
-            if i >= 0:
-                cursor.setNext(node)
-            else:
-                self._head = node
-        
-            #pseudocode
-            # if 'i' is selected: add element after the 'i' element of the list. ***Case 3***
-            # else (if 'i' is not selected): add element before the head of the element. ***Case 2***
+# <!!!>
 
+    # You have to keep a counter variable to count how many nodes you've passed before inserting after the ith one.
+    def insertAfter (self, i, element):
+        node = self._Node(element, None)
+        #i = int
+        if self.isEmpty():
+            self._head = node
+        else:
+            cursor = self._head #'cursor' is the node pointer, starting at the list head.
+            count = 0
+            # if the specified index is greater than the size of the list, add the node to the end of the list.
+            if int(i) >= self._size:
+                while cursor.getNext() is not None:
+                    count+=1
+                    cursor = cursor.getNext()
+                cursor.setNext(node)
+                print('Adding # ', self._size, ' element: ', node.getElement())
+                self._size += 1
+            elif int(i) < self._size:
+                while int(i) != count:
+                    count+=1
+                    cursor = cursor.getNext() #goes to the next node
+                cursor.setNext(node)
+                #print('Adding # ', self._size, ' element: ', node.getElement())
+                self._size += 1
+            #count+=1
+        print('Inserted ', node.getElement(), 'after index position #', count)
+    
+    # you have to save the previous and next node pointers as you loop through the list so you can place your new node after the previous or before the next one.
     def insertElt (self, insrtThis, where, insrtHere):
         """Insert element 'insrtThis' before/after node with element =='insrtHere'.
            Parameter 'where' = "B" (before) or "A' (After) 'insrtHere'.        """
         node = self._Node(insrtThis, None)
         # insert method body below
         # Hint: search for the list node element == 'insrtHere', then insert accordingly...'  
-
+        
+    
+    
+        
+# </!!!>
 class Empty(Exception):
     """Empty exception class provided to flag that condition. """
     pass
