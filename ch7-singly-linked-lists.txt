@@ -1,0 +1,23 @@
+# My notes from the textbook in chapter 7.
+
+A singly linked list is a collection of nodes that collectively form a linear sequence.
+Each node stores a reference to an object that is an element of the sequence and as a reference to the next node of the list.
+
+Traversing the linked list: Moving from the head node all the way to the tail node by following each node's next reference. 
+
+The next reference being the pointer to the next node. 
+Because the next reference of a node can be viewed as a link or pointer to another node. 
+The process of traversing a list is also known as link hopping or pointer hopping.
+
+Linked list's representation in memory relies on the collaboration of many objects. Each node is representated as a unique object, with that instance storing a reference to its element and a reference to the next node or None.
+Another object represents the linked list as a whole.
+
+The chapter will continue to illustrate nodes as "objects", and each node's "next" reference as a "pointer".
+
+Important property of a linked list is that it does not have a predetermined fixed size.
+It uses space proportionally to its current number of elements. When using a singly linked list we can easily insert an element at the head of the list.
+
+Main idea when inserting an element at the head of the list: create new node, set its element to the new element, set its next link to refer to the current head, and then set the list's head to point to the new node.
+
+Removing an element from the head of a singly linked list is essentially the reverse operation of inserting a new element at the head.
+
