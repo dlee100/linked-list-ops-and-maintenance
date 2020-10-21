@@ -1,0 +1,185 @@
+#"""The above searches the SLL one node at a time, starting with the head, until it finds a node whose element (data or key) equals the parameter 'key' value or it reaches the node after the tail, which is 'None'.  Lines 3, 4, and 7 are the way you loop through the list.  I've added some comments to help you understand what's going on, but the code itself was provided with the assignment as a Jupyter notebook file.  Copy it in and start from there if you haven't already done it.   """
+#"""Remember that a pointer ('cursor' in the above code) is the object reference - the long number representing the place in storage where the object's data is kept.  Each node is located at a difference place and is usually not in consecutive locations.  How to follow and manipulate these pointers is the thing I'm trying to get across here. """
+#"""For 'insertAfter' you have to keep a counter variable to count how many nodes you've passed before inserting after the ith one.  For 'insertElt' you have to save the previous and next node pointers as you loop through the list so you can place your new node after the previous or before the next one.  """
+
+#---------------------------------------------------------------------------------
+# IT-309 A4 requires you to complete the code for the two methods that follow
+#---------------------------------------------------------------------------------
+
+# ^^^^^ SHOULD ONLY BE AROUND 30 LINES OF CODE FOR THESE TWO METHODS COMBINED
+# ^^^^^ Review how LINKED STRUCTURES work and OBJECT ID's for pointing elements
+# ^^^^^ Textbook pages 255-265 (chapter 7)    
+
+for n in A3trans:
+    print(n.split(','))
+#for n in A3trans:
+#    print(n.split(',')[0])
+#for n in A3trans:
+#    print(n.split(',')[1])
+
+
+    def insertAfter1 (self, i, element): 
+        # 'i' is the 'ith' element (int input), 'element' is the element itself to be inserted (str input)
+        """Insert an element after the ith element of the list."""
+        node = self._Node(element, None)
+      # insert method body below
+      # Cases: (1) insert into empty list, (2) insert before the head, (3) insert in the interior
+        i = input(int)
+        # Case 1: insert into empty list
+        if self.isEmpty():
+            self._head = node # element?
+            # adds element to the empty list, making the element the head of the list. ***Case 1***
+        else:
+            cursor = self._i
+            if i >= 0:
+                cursor.setNext(node)
+            else:
+                self._head = node
+        
+            #pseudocode
+            # if 'i' is selected: add element after the 'i' element of the list. ***Case 3***
+            # else (if 'i' is not selected): add element before the head of the element. ***Case 2***
+
+    def insertAfter2 (self, i, element):
+        node = self._Node(element, None)
+        if self.isEmpty():
+            self._head = node
+        else:
+            cursor = self._head
+            # while loops traverses through the linked list until it reaches the ith element.
+            while cursor.getNext() is not i:
+                cursor = cursor.getNext( )
+                i+=1
+            cursor.setNext(node)
+        print('Adding # ', self._size, ' element: ', node.getElement())
+        self._size += 1
+
+
+        'IA,30,Squidward',
+        'IA,50,Spongebob',
+        'IA,2,Shuman',
+        'IA,40,Kennedy',
+        'IE,Nixon,A,LBJohnson',
+        'IE,Eisenhower,B,Kennedy',
+        'IE,Truman,B,Eisenhower'
+        'IE,Hoover,B,FDRoosevelt',
+        'IE,Wilson,B,Harding',
+        'IE,Wilson,A,TRoosevelt',
+        'IE,Taft,B,Wilson',
+        'R',
+        'R',
+        'R',
+
+        #SLL = SinglyLinkedList()
+        #SLL.add('Washington')
+        #SLL.add('Adams')
+        #SLL.add('Jefferson')
+        #SLL.add('Madison')
+
+        #SLL.showList()
+
+
+        while cursor: #loop until cursor is 'None', the list tail was reached.
+                    if count == i:
+                        cursor = cursor.getElement()
+                        #return True
+                    #cursor = cursor.setNext(node) #point to the next node by setting cursor to next.
+                    count+=1
+                self._size += 1
+
+
+        if insrtHere not in node: # same function as add()
+                while cursor.getNext() is not None:
+                    #count+=1
+                    cursor = cursor.getNext()
+                cursor.setNext(node)
+                print('Adding # ', self._size, ' element: ', node.getElement())
+                self._size += 1
+            el
+
+            """A3trans = ('A,Washington',
+           'A,Adams',
+           'A,Jefferson',
+           'A,Madison',
+           'A,Monroe',
+           'A,Quincy Adams',
+           'A,Jackson',
+           'A,Van Buren',
+           'A,Harrison',
+           'A,Tyler',
+           'A,Polk',
+           'A,Taylor',
+           'A,Fillmore',
+           'A,Pierce',
+           'A,Buchanan',
+           'A,Lincoln',
+           'IA,10,Squidward',
+           'A,AJohnson',
+           'A,Grant',
+           'A,Hayes',
+           'A,Garfield',
+           'A,Arthur',
+           'A,Cleveland',
+           'A,Harrison',
+           'A,Cleveland',
+           'A,McKinley',
+           'A,TRoosevelt',
+           'IA,15,Spongebob',
+           'IE,Wilson,A,TRoosevelt',
+           'A,Coolidge',
+           
+           'A,Harding',
+           
+           'A,Coolidge',
+           'A,FDRoosevelt',
+           
+           
+           'A,LBJohnson',
+           )"""
+
+    ,
+           'IE,Taft,B,Wilson',
+           'A,Coolidge',
+           'R',
+           'R',
+           'R',
+           'A,Harding',
+           'IE,Wilson,B,Harding',
+           'A,Coolidge',
+           'A,FDRoosevelt',
+           'IE,Hoover,B,FDRoosevelt',
+           'IA,2,Shuman',
+           'IA,40,Kennedy',
+           'A,LBJohnson',
+           'IE,Nixon,A,LBJohnson',
+           'IE,Eisenhower,B,Kennedy',
+           'IE,Truman,B,Eisenhower'
+
+           A3trans = ('A,Washington',
+           'A,Adams',
+           'A,Jefferson',
+           'A,Madison',
+           'A,Monroe',
+           'A,Quincy Adams',
+           'A,Jackson',
+           'A,Van Buren',
+           'A,Harrison',
+           'A,Tyler',
+           'A,Polk',
+           'A,Taylor',
+           'A,Fillmore',
+           'A,Pierce',
+           'A,Buchanan',
+           'A,Lincoln',
+           'A,AJohnson',
+           'A,Grant',
+           'A,Hayes',
+           'A,Garfield',
+           'A,Arthur',
+           'A,Cleveland',
+           'A,Harrison',
+           'A,Cleveland',
+           'A,McKinley',
+           'A,TRoosevelt',
+           'IE,Wilson,A,TRoosevelt',
+           'IE,Taft,B,Wilson')
