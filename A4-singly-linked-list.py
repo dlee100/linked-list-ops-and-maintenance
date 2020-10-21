@@ -1,3 +1,7 @@
+## IT309-001 Assignment #4 (A4): Linked List Operations and Maintenance
+### Daniel Lee
+### Due Date: 10.20.2020
+
 class SinglyLinkedList:
     """LIFO Stack implementation using a singly linked list for storage."""
 
@@ -56,6 +60,7 @@ class SinglyLinkedList:
         self._size -= 1
         out = self._head.getElement()      # save the head element and return to the caller
         self._head = self._head.getNext()  # Reset the head to the second (next) list element
+        print('Removing element')
         return out
 
     def showList(self):
@@ -77,20 +82,9 @@ class SinglyLinkedList:
             cursor = cursor.getNext() #point to the next node by setting cursor to next.
         return False
 
-#"""The above searches the SLL one node at a time, starting with the head, until it finds a node whose element (data or key) equals the parameter 'key' value or it reaches the node after the tail, which is 'None'.  Lines 3, 4, and 7 are the way you loop through the list.  I've added some comments to help you understand what's going on, but the code itself was provided with the assignment as a Jupyter notebook file.  Copy it in and start from there if you haven't already done it.   """
-#"""Remember that a pointer ('cursor' in the above code) is the object reference - the long number representing the place in storage where the object's data is kept.  Each node is located at a difference place and is usually not in consecutive locations.  How to follow and manipulate these pointers is the thing I'm trying to get across here. """
-#"""For 'insertAfter' you have to keep a counter variable to count how many nodes you've passed before inserting after the ith one.  For 'insertElt' you have to save the previous and next node pointers as you loop through the list so you can place your new node after the previous or before the next one.  """
-
-#---------------------------------------------------------------------------------
-# IT-309 A4 requires you to complete the code for the two methods that follow
-#---------------------------------------------------------------------------------
-
-# ^^^^^ SHOULD ONLY BE AROUND 30 LINES OF CODE FOR THESE TWO METHODS COMBINED
-# ^^^^^ Review how LINKED STRUCTURES work and OBJECT ID's for pointing elements
-# ^^^^^ Textbook pages 255-265 (chapter 7)
 # <!!!>
 
-    # You have to keep a counter variable to count how many nodes you've passed before inserting after the ith one.
+    # Have to keep a counter variable to count how many nodes you've passed before inserting after the ith one.
     def insertAfter (self, i, element):
         node = self._Node(element, None)
         #i = int
@@ -105,19 +99,24 @@ class SinglyLinkedList:
                     count+=1
                     cursor = cursor.getNext()
                 cursor.setNext(node)
-                print('Adding # ', self._size, ' element: ', node.getElement())
-                self._size += 1
-            elif int(i) < self._size:
-                while int(i) != count:
-                    count+=1
-                    cursor = cursor.getNext() #goes to the next node
-                cursor.setNext(node)
                 #print('Adding # ', self._size, ' element: ', node.getElement())
                 self._size += 1
-            #count+=1
+            # if the specified index is within range of the size of the list, insert node in the position.
+            elif int(i) < self._size:
+                while count < int(i):
+                    if count == i:
+                        previous_node.next = element
+                        element.next = cursor
+                        break
+                    previous_node = cursor
+                    cursor = cursor.getNext()
+                    
+                    count+=1
+                cursor.setNext(node)
+                self._size += 1
         print('Inserted ', node.getElement(), 'after index position #', count)
     
-    # You have to save the previous and next node pointers as you loop through the list so you can place your new node after the previous or before the next one.
+    # Have to save the previous and next node pointers as you loop through the list so you can place your new node after the previous or before the next one.
     def insertElt (self, insrtThis, where, insrtHere):
         """Insert element 'insrtThis' before/after node with element =='insrtHere'.
            Parameter 'where' = "B" (before) or "A' (After) 'insrtHere'.        """
@@ -128,41 +127,131 @@ class SinglyLinkedList:
         if self.isEmpty():
             self._head = node
         else:
-            cursor = self._head
             #insrtHere = cursor.getElement()
             if where == 'A':
+                cursor = self._head
                 # add insrtThis AFTER insrtHere
                 while cursor.getNext() is not None:
                     if insrtHere == cursor.getElement():
                         insrtHere = cursor.getElement()
-                        pass
+                        break
                     cursor = cursor.getNext()
-                    print('iterating ... ')
                 cursor.setNext(node)
                 self._size += 1
                 print('Inserted ', node.getElement(), 'after ', insrtHere)
             elif where == 'B':
                 # add insrtThis BEFORE insrtHere
-                
+                cursor = self._head
+                current_pos = 0
                 while cursor.getNext() is not None:
                     if insrtHere == cursor.getElement():
-                        insrtHere = cursor.getElement()
-                        pass
-                    cursor = cursor.getNext()
-                    print('iterating ... ')
-                cursor.
+                        previous_node._next = insrtThis
+                        cursor = cursor._next
+                        #insrtHere = current_node.getElement()
+                        print('HELLO WORLD')
+                        break
+                    previous_node = cursor
+                    cursor = cursor._next
+                    current_pos+=1
+                previous_node.setNext(node)
                 self._size += 1
-                print('Inserted ', node.getElement(), 'before ', insrtHere)
-            else:
-                pass
-        
-    
-    
-    
-    
-    
+                print('Inserted ', node.getElement(), 'before ', insrtHere) 
         
 # </!!!>
 class Empty(Exception):
     """Empty exception class provided to flag that condition. """
     pass
+
+
+# inserts like 'A,Washington' (add) are inserted after the most tail element
+# inserts like 'IE,Wilson,A,TRoosevelt' (insertElt) are inserted after or before the second element parameter. In this case, Wilson will be inserted after the TRoosevelt node.
+# inserts like 'IA,40,Kennedy' (insertAfter) are inserted in the index specified. if the index value is greater than the number of items on the SLL, the new node will be inserted after the last item and become the new rear/tail.
+# insert 'R' (remove) will simply remove the beginning/head node.  
+
+A3trans = ('A,Washington',
+           'A,Adams',
+           'A,Jefferson',
+           'A,Madison',
+           'A,Monroe',
+           'A,Quincy Adams',
+           'A,Jackson',
+           'A,Van Buren',
+           'A,Harrison',
+           'A,Tyler',
+           'A,Polk',
+           'A,Taylor',
+           'A,Fillmore',
+           'A,Pierce',
+           'A,Buchanan',
+           'A,Lincoln',
+           'A,AJohnson',
+           'A,Grant',
+           'A,Hayes',
+           'A,Garfield',
+           'A,Arthur',
+           'A,Cleveland',
+           'A,Harrison',
+           'A,Cleveland',
+           'A,McKinley',
+           'A,TRoosevelt',
+           'IE,Wilson,A,TRoosevelt',
+           'IE,Taft,B,Wilson',
+           'A,Coolidge',
+           'R',
+           'R',
+           'R',
+           'A,Harding',
+           'IE,Wilson,B,Harding',
+           'A,Coolidge',
+           'A,FDRoosevelt',
+           'IE,Hoover,B,FDRoosevelt',
+           'IA,2,Shuman',
+           'IA,40,Kennedy',
+           'A,LBJohnson',
+           'IE,Nixon,A,LBJohnson',
+           'IE,Eisenhower,B,Kennedy',
+           'IE,Truman,B,Eisenhower')
+
+# SLL1 object created
+SLL1 = SinglyLinkedList()
+for n in A3trans:
+    n = n.split(',')
+    if n[0] == 'A':
+        # adds node to the end of the list
+        SLL1.add(n[1])
+    elif n[0] == 'IE':
+        # inserts n[1] node to before/after (n[2]) the n[3] node
+        SLL1.insertElt(n[1],n[2],n[3])
+    elif n[0] == 'IA':
+        # inserts n[2] node after the node indexed (n[1])  
+        SLL1.insertAfter(n[1],n[2])
+    elif n[0] == 'R':
+        # removes the head node
+        SLL1.remove()
+    else:
+        pass
+print(SLL1._size)
+
+SLL1.showList()
+
+print(id(None))
+
+print(int('286A9C25E10', 16))
+
+SLL1.getSize()
+
+SLL1.remove()
+
+SLL1.showList()
+
+SLL1.getSize()
+
+## Observations
+### I have found developing and testing the code to be mostly debugging in terms of most time spent.
+### I have developed the functions relatively quickly but it was debugging all the functions when running that took the most time.
+### I would say on paper handling the SLL is easy. It is easy to have your mind grasp on whats going on.
+### But implementing it through code is more tricky than I had imagined. There's a lot of varying characteristic each node, function, and variable has.
+### I think I would prefer implementing the linked list using an array because I can visually see more clearly of whats going on.
+### I would say the insertElt was more difficult to code than insertAfter. insertElt you have to take in account the previous and next nodes.
+### I think the SLL class is suitable for implementing the Queue ADT, because its remove() function pops out the head while its add function inserts to the tail.
+### The SLL class functions as a FIFO

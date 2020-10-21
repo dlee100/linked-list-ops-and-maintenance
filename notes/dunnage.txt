@@ -1,3 +1,23 @@
+#"""The above searches the SLL one node at a time, starting with the head, until it finds a node whose element (data or key) equals the parameter 'key' value or it reaches the node after the tail, which is 'None'.  Lines 3, 4, and 7 are the way you loop through the list.  I've added some comments to help you understand what's going on, but the code itself was provided with the assignment as a Jupyter notebook file.  Copy it in and start from there if you haven't already done it.   """
+#"""Remember that a pointer ('cursor' in the above code) is the object reference - the long number representing the place in storage where the object's data is kept.  Each node is located at a difference place and is usually not in consecutive locations.  How to follow and manipulate these pointers is the thing I'm trying to get across here. """
+#"""For 'insertAfter' you have to keep a counter variable to count how many nodes you've passed before inserting after the ith one.  For 'insertElt' you have to save the previous and next node pointers as you loop through the list so you can place your new node after the previous or before the next one.  """
+
+#---------------------------------------------------------------------------------
+# IT-309 A4 requires you to complete the code for the two methods that follow
+#---------------------------------------------------------------------------------
+
+# ^^^^^ SHOULD ONLY BE AROUND 30 LINES OF CODE FOR THESE TWO METHODS COMBINED
+# ^^^^^ Review how LINKED STRUCTURES work and OBJECT ID's for pointing elements
+# ^^^^^ Textbook pages 255-265 (chapter 7)    
+
+for n in A3trans:
+    print(n.split(','))
+#for n in A3trans:
+#    print(n.split(',')[0])
+#for n in A3trans:
+#    print(n.split(',')[1])
+
+
     def insertAfter1 (self, i, element): 
         # 'i' is the 'ith' element (int input), 'element' is the element itself to be inserted (str input)
         """Insert an element after the ith element of the list."""
